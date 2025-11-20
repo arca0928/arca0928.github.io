@@ -13,22 +13,30 @@ const Header = () => {
 		>
 			<NavbarContent justify="start">
 				<NavbarBrand>
-					<Link className="font-inter font-bold" href="/">
+					<Link className="font-inter font-bold text-xl" href="/">
 						arca's Portfolio
 					</Link>
 				</NavbarBrand>
 				<NavbarContent className="sm:flex gap-5">
 					<NavbarItem>
-						<Link href="#about">About</Link>
+						<Link href="#about" className="text-lg">
+							About
+						</Link>
 					</NavbarItem>
 					<NavbarItem>
-						<Link href="#works">Works</Link>
+						<Link href="#works" className="text-lg">
+							Works
+						</Link>
 					</NavbarItem>
 					<NavbarItem>
-						<Link href="#skills">Skills</Link>
+						<Link href="#skills" className="text-lg">
+							Skills
+						</Link>
 					</NavbarItem>
 					<NavbarItem>
-						<Link href="#contact">Contact</Link>
+						<Link href="#contact" className="text-lg">
+							Contact
+						</Link>
 					</NavbarItem>
 				</NavbarContent>
 			</NavbarContent>
