@@ -5,6 +5,7 @@ import { FaGithub } from "react-icons/fa";
 const Header = () => {
 	return (
 		<Navbar
+			maxWidth="lg"
 			classNames={{
 				item: ["flex", "relative", "h-full", "items-center"],
 			}}
