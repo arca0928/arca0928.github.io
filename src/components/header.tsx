@@ -25,13 +25,13 @@ const Header = () => {
 						</Link>
 					</NavbarItem>
 					<NavbarItem>
-						<Link href="#works" className="text-lg">
-							Works
+						<Link href="#skills" className="text-lg">
+							Skills
 						</Link>
 					</NavbarItem>
 					<NavbarItem>
-						<Link href="#skills" className="text-lg">
-							Skills
+						<Link href="#works" className="text-lg">
+							Works
 						</Link>
 					</NavbarItem>
 					<NavbarItem>
