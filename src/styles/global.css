@@ -11,6 +11,7 @@
 
 :root {
 	--heroui-background: oklch(0.3346 0 247.84);
+	--heroui-content1: 240 4.7% 15%;
 	.text-primary {
 		color: oklch(0.9456 0.0017 247.84);
 	}
