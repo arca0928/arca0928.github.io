@@ -6,6 +6,8 @@ type WorkCardProps = {
 	imageUrl: string;
 	repoLink?: string;
 	altText?: string;
+	width?: number;
+	height?: number;
 };
 
 const WorkCard = (props: WorkCardProps) => {
@@ -16,15 +18,17 @@ const WorkCard = (props: WorkCardProps) => {
 					src={props.imageUrl}
 					alt={props.altText ?? props.title}
 					title={props.title}
-					className="mx-auto max-w-full max-h-60 object-contain"
+					className="w-full object-contain"
+					width={props.width}
+					height={props.height}
 				/>
 			</div>
 			<CardBody>
 				<p className="text-xl font-bold mb-2">{props.title}</p>
 				<p className="text-medium">{props.description}</p>
 			</CardBody>
-			<CardFooter>
-				{props.repoLink ? (
+			{props.repoLink ? (
+				<CardFooter>
 					<a
 						href={props.repoLink}
 						target="_blank"
@@ -35,8 +39,8 @@ const WorkCard = (props: WorkCardProps) => {
 							View in Github
 						</Button>
 					</a>
-				) : undefined}
-			</CardFooter>
+				</CardFooter>
+			) : undefined}
 		</Card>
 	);
 };
