@@ -34,11 +34,6 @@ const Header = () => {
 							Works
 						</Link>
 					</NavbarItem>
-					<NavbarItem>
-						<Link href="#contact" className="text-lg">
-							Contact
-						</Link>
-					</NavbarItem>
 				</NavbarContent>
 			</NavbarContent>
 			<NavbarContent justify="end">

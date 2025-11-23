@@ -1,8 +1,8 @@
 ---
+import WorkCard from "src/components/work_card";
 import Container from "../components/container";
 import Heading from "../components/heading";
 import SkillCard from "../components/skill_card";
-import Timeline from "../components/timeline";
 import Layout from "../layouts/Layout.astro";
 ---
 
@@ -34,6 +34,31 @@ import Layout from "../layouts/Layout.astro";
 	</Container>
 	<Container>
 		<Heading id="works">Works</Heading>
+
+		<div class="flex flex-row flex-wrap">
+			<WorkCard
+				imageUrl="/images/works/fes2024_screen_shot.png"
+				title="第60回高専祭特設サイト"
+				description="第60回高専祭の特設サイトです。学友会執行委員会 情報通信課のメンバーとして、フロントエンド部分を担当しました。Next.jsとReactを使用して開発しました。"
+			/>
+			<WorkCard 
+				imageUrl="/images/works/fes2025_screen_shot.png"
+				title="第61回高専祭特設サイト"
+				description="第61回高専祭の特設サイトです。学友会執行委員会 情報通信課のメンバーとして、フロントエンド部分と、少しデザインを担当しました。AstroとReactを使用して開発しました。" 
+			/>
+			<WorkCard
+				imageUrl="/images/works/nulltasker_logo.png"
+				title="NullTasker"
+				repoLink="https://github.com/Team-Nullpo/NullTasker"
+				description="学内ハッカソンで開発した、学生向けタスク管理Webアプリです。リポジトリ管理、コードレビュー、バグ修正などを担当しました。フロントエンドはPure HTML/CSS/JavaScript、バックエンドはNode.jsを使用して開発しました。"
+			/>
+			<WorkCard
+				imageUrl="/images/works/latex_calculator.png"
+				title="LaTeX calculator"
+				repoLink="https://github.com/arca0928/LaTeX-calculator"
+				description="LaTeX形式で入力できる電卓アプリです。Google Colab上で動作します。PythonとSymPyを使用して開発しました。"
+			/>
+		</div>
 	</Container>
-	<div class="my-100"></div>
+	<div class="my-20" />
 </Layout>
