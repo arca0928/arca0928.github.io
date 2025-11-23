@@ -1,6 +1,39 @@
 ---
+import Container from "../components/container";
+import Heading from "../components/heading";
+import SkillCard from "../components/skill_card";
+import Timeline from "../components/timeline";
 import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
+	<Container>
+		<Heading> arca0928 </Heading>
+		<div>OMUCT 2年知能情報コース</div>
+	</Container>
+	<Container>
+		<Heading id="about" size="medium">About Me</Heading>
+		<div>
+			大阪公立大学工業高専2年 知能情報コース所属のarcaです。
+			<br />
+			現在は学友会(生徒会)でwebフロントに携わっており、Rustなども学習中です。
+		</div>
+	</Container>
+	<Container>
+		<Heading id="skills">Skills</Heading>
+		<div class="flex flex-row flex-wrap">
+			<!-- Default set: mdi, Icon size: 64, Icon Color: #c1bfbf -->
+			<SkillCard icon="/arduino_icon.svg" title="Arduino" />
+			<SkillCard icon="/astro_icon.svg" title="Astro" />
+			<SkillCard icon="/python_icon.svg" title="Python" />
+			<SkillCard icon="/react_icon.svg" title="React" />
+			<SkillCard icon="/rust_icon.svg" title="Rust" />
+			<SkillCard icon="/git_icon.svg" title="Git" />
+			<SkillCard icon="/github_icon.svg" title="Github" />
+		</div>
+	</Container>
+	<Container>
+		<Heading id="works">Works</Heading>
+	</Container>
+	<div class="my-100"></div>
 </Layout>
