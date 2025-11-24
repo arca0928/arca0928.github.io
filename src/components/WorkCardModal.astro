@@ -1,0 +1,114 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata, MarkdownInstance } from "astro";
+
+interface Props {
+	id: string;
+	title: string;
+	descPath: string;
+	headImage: ImageMetadata;
+	imageAlt?: string;
+	techStack?: string[];
+}
+
+const { id, title, descPath, headImage, imageAlt, techStack } = Astro.props;
+
+// Markdownファイルを読み込む
+const posts = import.meta.glob<MarkdownInstance<Record<string, unknown>>>(
+	"/src/docs/works/*.md",
+	{ eager: true },
+);
+
+// descPathからファイル名を抽出 (例: "@docs/works/fes2024.md" -> "fes2024.md")
+const filename = descPath.split("/").pop();
+
+// 対応するMarkdownファイルを探す
+const postKey = Object.keys(posts).find((key) => key.endsWith(filename ?? ""));
+const post = postKey ? posts[postKey] : null;
+const Content = post ? post.Content : null;
+---
+
+<dialog id={id} class="modal p-0 rounded-xl bg-transparent backdrop:bg-black/50">
+    <div class="bg-[hsl(240,4.7%,15%)] text-white w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-xl shadow-2xl flex flex-col relative" onclick="event.stopPropagation()">
+        <!-- Header Image -->
+        <div class="relative w-full h-64 shrink-0">
+             <Image
+                src={headImage}
+                alt={imageAlt ?? title}
+                class="w-full h-full object-cover"
+            />
+            <button 
+                class="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-colors cursor-pointer z-10 border-none flex items-center justify-center"
+                onclick={`document.getElementById('${id}').close()`}
+                aria-label="Close modal"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+        </div>
+
+        <div class="p-8">
+            <h2 class="text-3xl font-bold mb-4">{title}</h2>
+            
+            {techStack && (
+                <div class="flex flex-wrap gap-2 mb-6">
+                    {techStack.map((tech) => (
+                        <span class="bg-gray-700 text-white px-3 py-1 rounded-full text-sm">{tech}</span>
+                    ))}
+                </div>
+            )}
+
+            <div class="markdown-content">
+                {Content ? <Content /> : <p>Content not found for {descPath}</p>}
+            </div>
+        </div>
+    </div>
+    
+    <!-- Click outside to close -->
+    <div class="fixed inset-0 w-full h-full cursor-default -z-10" onclick={`document.getElementById('${id}').close()`}></div>
+</dialog>
+
+<style>
+    @reference "../styles/global.css";
+
+    dialog {
+        border: none;
+        margin: auto;
+        max-width: 100vw;
+        max-height: 100vh;
+    }
+    dialog::backdrop {
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(4px);
+    }
+    dialog[open] {
+        animation: zoomIn 0.2s ease-out;
+        display: flex; /* Center the modal */
+        align-items: center;
+        justify-content: center;
+    }
+    @keyframes zoomIn {
+        from {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    /* Markdown Styles */
+    .markdown-content :global(h1) { @apply text-2xl font-bold my-4; }
+    .markdown-content :global(h2) { @apply text-xl font-bold my-3 border-b border-gray-600 pb-2; }
+    .markdown-content :global(h3) { @apply text-lg font-bold my-2; }
+    .markdown-content :global(p) { @apply my-2 leading-relaxed; }
+    .markdown-content :global(ul) { @apply list-disc list-inside my-2 pl-4; }
+    .markdown-content :global(ol) { @apply list-decimal list-inside my-2 pl-4; }
+    .markdown-content :global(li) { @apply my-1; }
+    .markdown-content :global(a) { @apply text-blue-400 hover:underline; }
+    .markdown-content :global(blockquote) { @apply border-l-4 border-gray-500 pl-4 italic my-4 text-gray-300; }
+    .markdown-content :global(code) { @apply bg-gray-800 px-1 py-0.5 rounded text-sm font-mono; }
+    .markdown-content :global(pre) { @apply bg-gray-900 p-4 rounded-lg overflow-x-auto my-4; }
+    .markdown-content :global(pre code) { @apply bg-transparent p-0 text-base; }
+    .markdown-content :global(img) { @apply rounded-lg max-w-full h-auto my-4; }
+</style>
