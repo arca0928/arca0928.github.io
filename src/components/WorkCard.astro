@@ -1,0 +1,52 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import WorkCardModal from "./WorkCardModal.astro";
+
+interface Props {
+	title: string;
+	descPath: string;
+	headImage: ImageMetadata;
+	imageAlt?: string;
+	isOpen: boolean;
+	techStack?: string[];
+}
+
+const { title, descPath, headImage, imageAlt, isOpen, techStack } = Astro.props;
+
+const modalId = `modal-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<div 
+    class="flex flex-row flex-wrap w-110 h-auto m-5 bg-[hsl(240,4.7%,15%)] rounded-xl shadow-2xl hover:scale-102 transition-transform duration-200 cursor-pointer"
+    onclick={`document.getElementById('${modalId}').showModal()`}
+>
+    <div class="flex w-full items-center justify-center aspect-video">
+        <Image
+            src={headImage}
+            alt={imageAlt ?? title}
+            class="w-full object-contain rounded-t-xl"
+        />
+    </div>
+    <div class="flex flex-col">
+        <p class="text-xl font-bold mx-2 my-3">{title}</p>
+        <br>
+
+        {techStack && (
+            <ul class="flex flex-wrap gap-2 m-2">
+                {techStack.map((tech) => (
+                    <li class="bg-gray-700 text-white px-2 py-1 rounded-3xl text-sm">{tech}</li>
+                ))}
+            </ul>
+        )}
+    </div>
+</div>
+
+<WorkCardModal 
+    id={modalId}
+    title={title}
+    descPath={descPath}
+    headImage={headImage}
+    imageAlt={imageAlt}
+    techStack={techStack}
+/>
