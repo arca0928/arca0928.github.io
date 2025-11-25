@@ -1,3 +1,7 @@
+# リポジトリ
+
+https://github.com/Team-Nullpo/NullTasker
+
 # 概要
 
 学内ハッカソンで作成した学生向けのタスク管理ツール。
@@ -25,5 +29,8 @@ Node.js
 sqlite
 
 # ギャラリー
+![Login screen](../../assets/images/works/nulltasker_login.png)
 
-![Logo](../../assets/images/works/nulltasker_logo.png)
+![Tasks](../../assets/images/works/nulltasker_tasks.png)
+
+![Top page dark theme](../../assets/images/works/nulltasker_dark_theme.png)
